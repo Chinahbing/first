@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频下载</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+</head>
+<body>
+    <div>
+        <form id="downLoad">
+            <input type="text" name="video_url" placeholder="请输入视频地址">
+            <input type="text" name="video_path" placeholder="请输入存放位置">
+            <input type="submit" value="下载" id="sub">
+        </form>
+    </div>
+</body>
+</html>
+<script>
+    $('#sub').click(function(){
+        var data = $('#downLoad').serialize();
+        $.ajax({
+            url: '/downLoad',
+            type: 'post',
+            dataType: 'json',
+            data: data,
+            success: function(res){
+                alert(res.msg);
+            },
+            error: function(){
+                alert('111');
+            }
+        })
+        return false;
+    })
+</script>
